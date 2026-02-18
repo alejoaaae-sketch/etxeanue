@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    /* Safety-focused color palette */
+    --background: 160 30% 98%;
+    --foreground: 200 25% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 200 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 200 25% 15%;
+
+    /* Primary: Calming teal/green */
+    --primary: 168 60% 42%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary: Soft neutral */
+    --secondary: 160 20% 94%;
+    --secondary-foreground: 200 25% 25%;
+
+    --muted: 160 15% 92%;
+    --muted-foreground: 200 15% 45%;
+
+    --accent: 168 50% 90%;
+    --accent-foreground: 168 60% 30%;
+
+    /* Alert colors */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Warning/SOS orange */
+    --warning: 25 95% 53%;
+    --warning-foreground: 0 0% 100%;
+
+    /* Success green */
+    --success: 142 70% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 160 20% 88%;
+    --input: 160 20% 88%;
+    --ring: 168 60% 42%;
+
+    --radius: 1rem;
+
+    /* Custom gradients */
+    --gradient-safe: linear-gradient(135deg, hsl(168, 60%, 42%) 0%, hsl(175, 55%, 48%) 100%);
+    --gradient-sos: linear-gradient(135deg, hsl(0, 72%, 51%) 0%, hsl(15, 80%, 55%) 100%);
+    --gradient-background: linear-gradient(180deg, hsl(160, 30%, 98%) 0%, hsl(168, 25%, 95%) 100%);
+
+    /* Shadows */
+    --shadow-soft: 0 4px 20px -4px hsla(168, 60%, 42%, 0.2);
+    --shadow-sos: 0 4px 20px -4px hsla(0, 72%, 51%, 0.3);
+    --shadow-card: 0 2px 12px -2px hsla(200, 25%, 15%, 0.08);
+
+    /* Sidebar (keeping defaults) */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 200 25% 8%;
+    --foreground: 160 20% 95%;
+
+    --card: 200 25% 12%;
+    --card-foreground: 160 20% 95%;
+
+    --popover: 200 25% 12%;
+    --popover-foreground: 160 20% 95%;
+
+    --primary: 168 55% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 200 20% 18%;
+    --secondary-foreground: 160 20% 90%;
+
+    --muted: 200 20% 15%;
+    --muted-foreground: 160 15% 60%;
+
+    --accent: 168 40% 20%;
+    --accent-foreground: 168 55% 70%;
+
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 100%;
+
+    --warning: 25 90% 55%;
+    --warning-foreground: 0 0% 100%;
+
+    --success: 142 65% 50%;
+    --success-foreground: 0 0% 100%;
+
+    --border: 200 20% 20%;
+    --input: 200 20% 20%;
+    --ring: 168 55% 50%;
+
+    --gradient-safe: linear-gradient(135deg, hsl(168, 55%, 50%) 0%, hsl(175, 50%, 55%) 100%);
+    --gradient-background: linear-gradient(180deg, hsl(200, 25%, 8%) 0%, hsl(200, 25%, 12%) 100%);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--gradient-background);
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .btn-safe {
+    background: var(--gradient-safe);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .btn-sos {
+    background: var(--gradient-sos);
+    box-shadow: var(--shadow-sos);
+  }
+
+  .card-elevated {
+    box-shadow: var(--shadow-card);
+  }
+
+  .pulse-soft {
+    animation: pulse-soft 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .pulse-sos {
+    animation: pulse-sos 1s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.85;
+      transform: scale(1.02);
+    }
+  }
+
+  @keyframes pulse-sos {
+    0%, 100% {
+      opacity: 1;
+      box-shadow: 0 0 0 0 hsla(0, 72%, 51%, 0.4);
+    }
+    50% {
+      opacity: 0.9;
+      box-shadow: 0 0 0 12px hsla(0, 72%, 51%, 0);
+    }
+  }
+
+  .progress-ring {
+    animation: progress-spin 1.5s linear infinite;
+  }
+
+  @keyframes progress-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}
